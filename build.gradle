@@ -34,12 +34,4 @@ task webpack(type: NodeTask) {
   script = file('node_modules/webpack/bin/webpack.js')
 }
 
-sourceSets {
-  main {
-    resources {
-      srcDir 'dist'
-    }
-  }
-}
-
-assemble.dependsOn("webpack")
+processResources.dependsOn("webpack")
