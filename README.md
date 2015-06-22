@@ -18,6 +18,6 @@ Your changes will appear without reloading the browser like in [this video](http
 
 ### Deployment
 
-The gradle assemble will create the javascript artifact required and server the non-hot-loading version at the root:
+The gradle assemble will create the javascript artifact required and serve the non-hot-loading version at the root:
  i.e. http://localhost:5050
 
