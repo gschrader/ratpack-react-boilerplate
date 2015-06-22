@@ -10,6 +10,10 @@ buildscript {
   }
 }
 
+plugins {
+  id "com.moowork.node" version "0.10"
+}
+
 repositories {
   mavenLocal()
   mavenCentral()
@@ -20,3 +24,22 @@ apply plugin: "io.ratpack.ratpack-groovy"
 dependencies {
   testCompile 'org.spockframework:spock-core:0.7-groovy-2.0'
 }
+
+node {
+  version = "0.12.4"
+  download = true
+}
+
+task webpack(type: NodeTask) {
+  script = file('node_modules/webpack/bin/webpack.js')
+}
+
+sourceSets {
+  main {
+    resources {
+      srcDir 'dist'
+    }
+  }
+}
+
+assemble.dependsOn("webpack")
