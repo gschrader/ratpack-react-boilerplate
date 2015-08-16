@@ -2,18 +2,16 @@ var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-
 module.exports = {
-    entry: [
-        'webpack-dev-server/client?http://localhost:3000',
-        'webpack/hot/only-dev-server',
-        './src/main/resources'
-    ],
-    devtool: 'eval-source-map',
+    devtool: 'source-map',
+    entry: path.join(__dirname, '/src/main/resources'),
     output: {
-        path: path.join(__dirname, 'build/resources/main'),
+        path: path.join(__dirname, './build/resources/main'),
         filename: 'bundle.js',
-        publicPath: '/static/'
+        publicPath: '/'
+    },
+    resolve: {
+        extensions: ['', '.js']
     },
     plugins: [
         new webpack.ProvidePlugin({
@@ -22,19 +20,23 @@ module.exports = {
             'window.jQuery': 'jquery',
             'root.jQuery': 'jquery'
         }),
-        new ExtractTextPlugin("bundle.css", {
-            allChunks: true
+        new ExtractTextPlugin("bundle.css", { allChunks: true }),
+        new webpack.optimize.OccurenceOrderPlugin(),
+        new webpack.DefinePlugin({
+            'process.env': {
+                'NODE_ENV': JSON.stringify('production')
+            }
         }),
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin()
+        new webpack.optimize.UglifyJsPlugin({
+            compressor: {
+                warnings: false
+            }
+        })
     ],
-    resolve: {
-        extensions: ['', '.js']
-    },
     module: {
         loaders: [{
             test: /\.jsx?$/,
-            loaders: ['react-hot', 'babel?{"plugins":["babel-plugin-object-assign"],stage:0}'],
+            loaders: ['babel?{"plugins":["babel-plugin-object-assign"],stage:0}'],
             include: path.join(__dirname, 'src')
         }, {
             test: /\.css$/,
@@ -54,7 +56,6 @@ module.exports = {
         }, {
             test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
             loader: "url?limit=10000&mimetype=image/svg+xml"
-        }],
-
+        }]
     }
 };

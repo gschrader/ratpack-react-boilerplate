@@ -15,28 +15,26 @@ ratpack {
 
     handlers {
         get {
-            def bundle = "/bundle.js"
+            def bundle = "/"
             render groovyTemplate([bundle: bundle], "index.html")
         }
 
         get("dev") {
-            def bundle = "http://localhost:3000/static/bundle.js"
+            def bundle = "http://localhost:3000/static/"
             render groovyTemplate([bundle: bundle], "index.html")
-        }
-
-        get("bundle.js") { ctx ->
-            def resourceStream = getClass().getResourceAsStream("/bundle.js")?.text
-            if (resourceStream) {
-                ctx.response.send(ctx.get(MimeTypes).getContentType("bundle.js"), resourceStream)
-            } else {
-                ctx.next()
-            }
         }
 
         get('static/:id') {
             render "http://localhost:3000/static/${context.pathTokens['id']}".toURL().text
         }
 
-        assets "public"
+        get(":id") { ctx ->
+            def resourceStream = getClass().getResourceAsStream("${context.pathTokens['id']}")?.text
+            if (resourceStream) {
+                ctx.response.send(ctx.get(MimeTypes).getContentType(context.pathTokens['id']), resourceStream)
+            } else {
+                ctx.next()
+            }
+        }
     }
 }

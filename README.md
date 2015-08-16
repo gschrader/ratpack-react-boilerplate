@@ -13,7 +13,7 @@ gradlew run
 open http://localhost:5050/dev
 ```
 
-Now edit `src/App.js`.
+Now edit `src/main/resources/App.js`.
 Your changes will appear without reloading the browser like in [this video](http://vimeo.com/100010922).
 
 ### Deployment

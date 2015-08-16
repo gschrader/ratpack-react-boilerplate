@@ -30,8 +30,8 @@ node {
   download = true
 }
 
-task webpack(type: NodeTask) {
-  script = file('node_modules/webpack/bin/webpack.js')
+task webpack(type: NpmTask) {
+  args = ['run', 'webpack']
 }
 
 processResources.dependsOn("webpack")

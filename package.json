@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Boilerplate for Ratpack ReactJS project with hot code reloading",
   "scripts": {
-    "webpack": "webpack --progress --colors",
+    "webpack": "./node_modules/.bin/webpack --config webpack-production.config.js",
     "start": "node server.js"
   },
   "repository": {
@@ -29,11 +29,20 @@
   "devDependencies": {
     "babel-core": "^5.4.7",
     "babel-loader": "^5.1.2",
+    "css-loader": "^0.15.1",
+    "file-loader": "^0.8.4",
+    "url-loader": "^0.5.6",
+    "extract-text-webpack-plugin": "^0.8.2",
     "react-hot-loader": "^1.2.7",
+    "babel-plugin-object-assign": "^1.2.0",
     "webpack": "^1.9.11",
     "webpack-dev-server": "^1.8.2"
   },
   "dependencies": {
-    "react": "^0.13.0"
+    "babel": "^4.4.3",
+    "react": "^0.13.0",
+    "jquery": "^2.1.4",
+    "bootstrap": "^3.2.0",
+    "react-bootstrap": "^0.23.7"
   }
 }
