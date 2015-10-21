@@ -11,7 +11,7 @@ module.exports = {
     ],
     devtool: 'eval-source-map',
     output: {
-        path: path.join(__dirname, 'build/resources/main'),
+        path: path.join(__dirname, 'build/resources/main/react'),
         filename: 'bundle.js',
         publicPath: '/static/'
     },

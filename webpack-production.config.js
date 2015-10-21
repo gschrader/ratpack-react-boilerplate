@@ -6,7 +6,7 @@ module.exports = {
     devtool: 'source-map',
     entry: path.join(__dirname, '/src/main/resources'),
     output: {
-        path: path.join(__dirname, './build/resources/main'),
+        path: path.join(__dirname, './src/ratpack/react'),
         filename: 'bundle.js',
         publicPath: '/'
     },

@@ -6,3 +6,4 @@ npm-debug.log
 .idea
 *.iml
 build
+src/ratpack/react

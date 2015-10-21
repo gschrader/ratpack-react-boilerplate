@@ -6,7 +6,7 @@ buildscript {
   }
 
   dependencies {
-    classpath 'io.ratpack:ratpack-gradle:0.9.17'
+    classpath 'io.ratpack:ratpack-gradle:1.1.1'
   }
 }
 
@@ -22,7 +22,7 @@ repositories {
 apply plugin: "io.ratpack.ratpack-groovy"
 
 dependencies {
-  testCompile 'org.spockframework:spock-core:0.7-groovy-2.0'
+  testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
 }
 
 node {
@@ -35,3 +35,7 @@ task webpack(type: NpmTask) {
 }
 
 processResources.dependsOn("webpack")
+
+task wrapper(type: Wrapper) {
+  gradleVersion = '2.8'
+}

@@ -1,4 +1,3 @@
-import ratpack.file.MimeTypes
 import ratpack.groovy.template.TextTemplateModule
 
 import static ratpack.groovy.Groovy.groovyTemplate
@@ -28,13 +27,8 @@ ratpack {
             render "http://localhost:3000/static/${context.pathTokens['id']}".toURL().text
         }
 
-        get(":id") { ctx ->
-            def resourceStream = getClass().getResourceAsStream("${context.pathTokens['id']}")?.text
-            if (resourceStream) {
-                ctx.response.send(ctx.get(MimeTypes).getContentType(context.pathTokens['id']), resourceStream)
-            } else {
-                ctx.next()
-            }
+        files {
+            dir "react"
         }
     }
 }
