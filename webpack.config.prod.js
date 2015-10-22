@@ -36,7 +36,7 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.jsx?$/,
-      loaders: ['babel?{"plugins":["babel-plugin-object-assign"],stage:0}'],
+      loaders: ['babel'],
       include: path.join(__dirname, 'src')
     }, {
       test: /\.css$/,
