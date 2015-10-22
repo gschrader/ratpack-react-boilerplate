@@ -2,7 +2,7 @@ ratpack-react-boilerplate
 =====================
 
 The minimal dev environment to enable live-editing React components from a ratpack server.
-Derived from this [example](https://github.com/gaearon/react-hot-boilerplate)
+Derived from this [example](https://github.com/gaearon/react-transform-boilerplate)
 
 ### Usage
 
