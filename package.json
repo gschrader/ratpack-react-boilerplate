@@ -7,7 +7,7 @@
     "webpack": "NODE_ENV=production webpack --config webpack.config.prod.js",
     "build": "npm run clean && npm run webpack",
     "start": "node devServer.js",
-    "lint": "eslint src"
+    "lint": "eslint src/main/resources"
   },
   "repository": {
     "type": "git",
