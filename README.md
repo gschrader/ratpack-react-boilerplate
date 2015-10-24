@@ -14,10 +14,12 @@ open http://localhost:5050/dev
 ```
 
 Now edit `src/main/resources/App.js`.
-Your changes will appear without reloading the browser like in [this video](http://vimeo.com/100010922).
+Your changes will appear without reloading the browser like this:
+
+![Demo](./demo.gif)
+
 
 ### Deployment
 
 The gradle assemble will create the javascript artifact required and serve the non-hot-loading version at the root:
  i.e. http://localhost:5050
-
