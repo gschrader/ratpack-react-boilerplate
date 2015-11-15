@@ -7,3 +7,5 @@ npm-debug.log
 *.iml
 build
 src/ratpack/react
+*.log
+*.log.gz

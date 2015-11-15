@@ -1,41 +1,53 @@
 buildscript {
 
-  repositories {
-    mavenLocal()
-    mavenCentral()
-  }
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
 
-  dependencies {
-    classpath 'io.ratpack:ratpack-gradle:1.1.1'
-  }
+    dependencies {
+        classpath 'io.ratpack:ratpack-gradle:1.1.1'
+    }
 }
 
 plugins {
-  id "com.moowork.node" version "0.10"
+    id "com.moowork.node" version "0.10"
 }
 
 repositories {
-  mavenLocal()
-  mavenCentral()
+    mavenLocal()
+    mavenCentral()
+    maven {
+        url "http://dl.bintray.com/ylemoigne/maven"
+    }
 }
 
 apply plugin: "io.ratpack.ratpack-groovy"
 
 dependencies {
-  testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
+    runtime 'org.apache.logging.log4j:log4j-slf4j-impl:2.2'
+    runtime 'org.apache.logging.log4j:log4j-api:2.2'
+    runtime 'org.apache.logging.log4j:log4j-core:2.2'
+    runtime 'com.lmax:disruptor:3.3.0'
+
+    compile 'fr.javatic.ratpack:ratpack-jwtauth:0.3'
+    compile "com.auth0:java-jwt:2.0.1"
+    compile ratpack.dependency('pac4j')
+
+    testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
 }
 
 node {
-  version = "0.12.4"
-  download = true
+    version = "0.12.4"
+    download = true
 }
 
 task webpack(type: NpmTask) {
-  args = ['run', 'webpack']
+    args = ['run', 'webpack']
 }
 
 processResources.dependsOn("webpack")
 
 task wrapper(type: Wrapper) {
-  gradleVersion = '2.8'
+    gradleVersion = '2.8'
 }
