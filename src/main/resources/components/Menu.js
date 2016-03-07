@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {Navbar, Nav, NavItem, NavDropdown, MenuItem, Modal, NavBrand} from 'react-bootstrap';
+import {Navbar, Nav, NavItem, NavDropdown, MenuItem, Modal, NavbarBrand} from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Link } from 'react-router';
 
@@ -18,24 +18,29 @@ export default class Header extends Component {
             !isLoginPage &&
             <div>
 
-                <Navbar toggleNavKey={0}>
-                    <NavBrand>
-                        <Link to="/" query={{}}>
-                            Ratpack React Boilerplate
-                        </Link>
-                    </NavBrand>
-                    <Nav right eventKey={1}>
-                        <LinkContainer to="/monitor" query={{}}>
-                            <NavItem eventKey={2}>Monitor</NavItem>
+                <Navbar>
+                    <Navbar.Header>
+                        <LinkContainer to={{pathname: '/'}}>
+                            <Navbar.Brand>
+                                <Link to="/">Ratpack React Boilerplate</Link>
+                            </Navbar.Brand>
                         </LinkContainer>
-                        {name ?
-                            <NavDropdown eventKey={4} title={name} id="user-menu">
-                                <MenuItem eventKey={5} onSelect={ event=>this.onLogoutClick(event)}>Log out</MenuItem>
-                            </NavDropdown>
-                            : <div/>}
-                    </Nav>
+                        <Navbar.Toggle />
+                    </Navbar.Header>
+                    <Navbar.Collapse>
+                        <Nav pullRight eventKey={1}>
+                            <LinkContainer to="/monitor" query={{}}>
+                                <NavItem eventKey={2}>Monitor</NavItem>
+                            </LinkContainer>
+                            {name ?
+                                <NavDropdown eventKey={4} title={name} id="user-menu">
+                                    <MenuItem eventKey={5} onSelect={ event=>this.onLogoutClick(event)}>Log
+                                        out</MenuItem>
+                                </NavDropdown>
+                                : <div/>}
+                        </Nav>
 
-
+                    </Navbar.Collapse>
                 </Navbar>
             </div>
         );
