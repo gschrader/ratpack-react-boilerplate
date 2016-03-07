@@ -4,8 +4,9 @@ import {connect} from 'react-redux';
 class Secured extends Component {
     componentWillMount() {
         const {history, user} = this.props;
+        const { router } = this.context;
         if (!user) {
-            history.pushState(null, '/login');
+            router.push('/login');
         }
     }
 

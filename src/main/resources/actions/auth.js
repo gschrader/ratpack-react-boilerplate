@@ -114,7 +114,10 @@ export function logout(user) {
             })
         }).then(checkStatus)
             .then(parseJSON)
-            .then(json => dispatch(logoutSuccess(user, json)))
+            .then(json => {
+                localStorage.setItem('jv_jwt', '');
+                dispatch(logoutSuccess(user, json))
+            })
             .catch(function (error) {
                 const response = error.response;
                 if (response === undefined) {
