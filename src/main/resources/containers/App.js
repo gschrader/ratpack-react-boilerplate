@@ -21,7 +21,7 @@ class App extends Component {
     handleLogout() {
         const { user } = this.props;
         this.props.dispatch(logout(user));
-        this.context.history.pushState(null, '/');
+        this.context.router.push('/login');
     }
 
     render() {
@@ -29,7 +29,7 @@ class App extends Component {
         return (
             <div className="container-fluid">
 
-                <Menu name={name} handleLogout={()=>this.handleLogout()}/>
+                <Menu location={this.props.location} name={name} handleLogout={()=>this.handleLogout()}/>
 
                 <div className="appContent">
                     {this.props.children}
@@ -51,11 +51,12 @@ class App extends Component {
 App.propTypes = {
     user: PropTypes.string,
     children: PropTypes.node.isRequired,
+    location: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired
 };
 
 App.contextTypes = {
-    history: PropTypes.object.isRequired,
+    router: PropTypes.object.isRequired,
     store: PropTypes.object.isRequired
 };
 

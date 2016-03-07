@@ -11,7 +11,7 @@ export default class Header extends Component {
 
     render() {
         const {name} = this.props;
-        const pathname = this.context.location.pathname;
+        const pathname = this.props.location.pathname;
         const isLoginPage = pathname.indexOf('login') > -1;
 
         return (

@@ -2,9 +2,8 @@ import 'babel-polyfill';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import createBrowserHistory from 'history/lib/createBrowserHistory';
 import { Provider } from 'react-redux';
-import { Router, Route, IndexRoute} from 'react-router';
+import { Router, Route, IndexRoute, browserHistory} from 'react-router';
 
 import configureStore from './store/configureStore';
 
@@ -17,12 +16,11 @@ import NotFound from './containers/NotFound';
 
 import  'bootstrap/dist/css/bootstrap.css';
 
-const history = createBrowserHistory();
 const store = configureStore();
 
 ReactDOM.render(
     <Provider store={store}>
-        <Router history={history}>
+        <Router history={browserHistory}>
             <Route path="/" component={App}>
                 <IndexRoute component={Home}/>
                 <Route path="/login" component={Login}/>
