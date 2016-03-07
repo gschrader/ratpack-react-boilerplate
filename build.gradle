@@ -6,7 +6,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'io.ratpack:ratpack-gradle:1.1.1'
+        classpath 'io.ratpack:ratpack-gradle:1.2.0'
     }
 }
 
