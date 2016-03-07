@@ -5,8 +5,9 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
   devtool: 'eval',
   entry: [
+    'babel-polyfill',
     'webpack-hot-middleware/client?path=http://localhost:3000/__webpack_hmr&timeout=20000',
-    './src/main/resources'
+    path.join(__dirname, './src/main/resources')
   ],
   output: {
     path: path.join(__dirname, 'dist'),
@@ -23,8 +24,12 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.js$/,
-      loaders: ['babel'],
-      include: path.join(__dirname, 'src')
+      loader: 'babel-loader',
+      include: path.join(__dirname, 'src'),
+      query: {
+        plugins: ['transform-runtime'],
+        presets: ['es2015', 'stage-0', 'react']
+      }
     }, {
       test: /\.css$/,
       loader: ExtractTextPlugin.extract("css-loader")
