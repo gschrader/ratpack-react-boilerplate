@@ -1,10 +1,9 @@
 import com.fasterxml.jackson.databind.ObjectMapper
-import fr.javatic.ratpack.jwtauth.InputType
-import fr.javatic.ratpack.jwtauth.JWTAuthModule
-import fr.javatic.ratpack.jwtauth.LoginHandlerProvider
+import org.pac4j.core.profile.UserProfile
+import org.pac4j.jwt.profile.JwtGenerator
+import ratpack.exec.Blocking
 import ratpack.groovy.template.TextTemplateModule
-import ratpack.react.AuthForm
-import ratpack.react.Authenticator
+import ratpack.react.AuthenticatorService
 import ratpack.react.JVMDataService
 
 import java.time.Duration
@@ -16,20 +15,14 @@ import static ratpack.jackson.Jackson.jsonNode
 import static ratpack.stream.Streams.periodically
 import static ratpack.websocket.WebSockets.websocketBroadcast
 
+def secret = ("McGriddles!" * 10).substring(0, 32)
+
 ratpack {
 
     bindings {
         module(TextTemplateModule)
         bindInstance(new JVMDataService())
-
-        def secret = "McGriddles!" * 10
-
-        module(JWTAuthModule, { cfg ->
-            cfg.secret(secret)
-            cfg.header("X-Authentication")
-            cfg.authentication("default", AuthForm, Authenticator, InputType.JSON)
-
-        })
+        bindInstance(new AuthenticatorService())
     }
 
     serverConfig {
@@ -37,8 +30,32 @@ ratpack {
     }
 
     handlers {
-        path("api/login") {
-            get(LoginHandlerProvider).handleLoginFor("default", context)
+        path("api/login") { ctx ->
+            parse(jsonNode()).then(
+                    { data ->
+                        Blocking.get(
+                                {
+                                    def model = ctx.get(AuthenticatorService).authenticate(data)
+                                    JwtGenerator generator = new JwtGenerator(secret, false)
+
+                                    def profile = new UserProfile()
+                                    profile.addAttribute("name", model.name)
+                                    profile.addAttribute("user", model.user)
+
+                                    return generator.generate(profile)
+                                }
+                        ).onError({ e ->
+                            ctx.response.status(400)
+                            render e.message
+
+                        }).then(
+                                { token ->
+                                    render json(token)
+
+                                }
+                        )
+                    }
+            )
         }
 
         post("api/logout") {

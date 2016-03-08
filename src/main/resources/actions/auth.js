@@ -55,10 +55,7 @@ export function login(user, password) {
                 console.log(json);
                 localStorage.setItem('jv_jwt', json);
                 var data = jwt_decode(json);
-                console.log(data);
-                dispatch(loginSuccess(data['private.user'], data['private.name']));
-                //dispatch(loginSuccess(json.user, json.user));
-
+                dispatch(loginSuccess(data['user'], data['name']));
             })
             .catch(function (error) {
                 const response = error.response;
