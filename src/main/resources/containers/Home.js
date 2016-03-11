@@ -17,7 +17,8 @@ export default class Home extends Component {
                 <Panel header="Java Libraries">
                     <ul>
                         <li><a href="https://github.com/ratpack/ratpack" target="_blank">Ratpack</a></li>
-                        <li><a href="https://github.com/ylemoigne/ratpack-jwtauth" target="_blank">ratpack-jwtauth</a></li>
+                        <li><a href="https://github.com/ylemoigne/ratpack-jwtauth" target="_blank">ratpack-jwtauth</a>
+                        </li>
                     </ul>
                 </Panel>
 
@@ -25,7 +26,8 @@ export default class Home extends Component {
                     <ul>
                         <li><a href="https://github.com/facebook/react" target="_blank">React</a></li>
                         <li><a href="https://github.com/rackt/redux" target="_blank">Redux</a></li>
-                        <li><a href="https://github.com/react-bootstrap/react-bootstrap" target="_blank">React Bootstrap</a></li>
+                        <li><a href="https://github.com/react-bootstrap/react-bootstrap" target="_blank">React
+                            Bootstrap</a></li>
                         <li><a href="https://github.com/rackt/react-router" target="_blank">React Router</a></li>
                     </ul>
                 </Panel>

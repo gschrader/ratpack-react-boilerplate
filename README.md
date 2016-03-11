@@ -10,7 +10,7 @@ Derived from this [example](https://github.com/gaearon/react-transform-boilerpla
 gradlew npmInstall
 gradlew npm_start
 gradlew run
-open http://localhost:5050/dev
+open http://localhost:5050
 ```
 
 Now edit `src/main/resources/App.js`.

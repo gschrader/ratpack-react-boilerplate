@@ -5,6 +5,7 @@ import ratpack.exec.Blocking
 import ratpack.groovy.template.TextTemplateModule
 import ratpack.react.AuthenticatorService
 import ratpack.react.JVMDataService
+import ratpack.react.Util
 
 import java.time.Duration
 
@@ -30,50 +31,52 @@ ratpack {
     }
 
     handlers {
-        path("api/login") { ctx ->
-            parse(jsonNode()).then(
-                    { data ->
-                        Blocking.get(
-                                {
-                                    def model = ctx.get(AuthenticatorService).authenticate(data)
-                                    JwtGenerator generator = new JwtGenerator(secret, false)
+        prefix("api") {
+            path("login") { ctx ->
+                parse(jsonNode()).then(
+                        { data ->
+                            Blocking.get(
+                                    {
+                                        def model = ctx.get(AuthenticatorService).authenticate(data)
+                                        JwtGenerator generator = new JwtGenerator(secret, false)
 
-                                    def profile = new UserProfile()
-                                    profile.addAttribute("name", model.name)
-                                    profile.addAttribute("user", model.user)
+                                        def profile = new UserProfile()
+                                        profile.addAttribute("name", model.name)
+                                        profile.addAttribute("user", model.user)
 
-                                    return generator.generate(profile)
-                                }
-                        ).onError({ e ->
-                            ctx.response.status(400)
-                            render e.message
+                                        return generator.generate(profile)
+                                    }
+                            ).onError({ e ->
+                                ctx.response.status(400)
+                                render e.message
 
-                        }).then(
-                                { token ->
-                                    render json(token)
+                            }).then(
+                                    { token ->
+                                        render json(token)
 
-                                }
-                        )
-                    }
-            )
-        }
+                                    }
+                            )
+                        }
+                )
+            }
 
-        post("api/logout") {
-            render json(
-                    [
-                            user: ""
-                    ]
-            )
-        }
+            post("logout") {
+                render json(
+                        [
+                                user: ""
+                        ]
+                )
+            }
 
-        path("jvm") {
-            render json(get(JVMDataService))
-        }
+            path("jvm") {
+                render json(get(JVMDataService))
+            }
 
-        path("ws/jvm") { context ->
-            websocketBroadcast(context, periodically(registry, Duration.ofMillis(1000), {
-                return new ObjectMapper().writeValueAsString(registry.get(JVMDataService).last)
-            }))
+            path("jvmws") { context ->
+                websocketBroadcast(context, periodically(registry, Duration.ofMillis(1000), {
+                    return new ObjectMapper().writeValueAsString(registry.get(JVMDataService).last)
+                }))
+            }
         }
 
         get('static/:id') {
@@ -85,13 +88,15 @@ ratpack {
         }
 
         all {
-            if (serverConfig.isDevelopment()) {
-                def bundle = "http://localhost:3000/static/"
-                render groovyTemplate([bundle: bundle], "index.html")
+            def bundle
+            def devUrl = "http://localhost:3000/static/"
+            if (serverConfig.isDevelopment() && Util.isRunning(devUrl + "bundle.js")) {
+                // the following is only needed for hot-reloading
+                bundle = devUrl
             } else {
-                def bundle = "/"
-                render groovyTemplate([bundle: bundle], "index.html")
+                bundle = "/"
             }
+            render groovyTemplate([bundle: bundle], "index.html")
         }
     }
 }
