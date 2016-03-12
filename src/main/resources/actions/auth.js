@@ -146,7 +146,7 @@ export function autoLogin() {
         if (jwt) {
             try {
                 var data = jwt_decode(jwt);
-                dispatch(loginSuccess(data['private.user'], data['private.name']));
+                dispatch(loginSuccess(data['user'], data['name']));
             } catch (e) {
                 console.log(e);
                 localStorage.setItem('jv_jwt', '');
