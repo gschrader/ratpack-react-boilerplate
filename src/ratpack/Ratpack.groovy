@@ -89,10 +89,10 @@ ratpack {
 
         all {
             def bundle
-            def devUrl = "http://localhost:3000/static/"
-            if (serverConfig.isDevelopment() && Util.isRunning(devUrl + "bundle.js")) {
+            def devUrl = "http://localhost:3000/"
+            if (serverConfig.isDevelopment() && Util.isRunning(devUrl)) {
                 // the following is only needed for hot-reloading
-                bundle = devUrl
+                bundle = devUrl + "static/"
             } else {
                 bundle = "/"
             }

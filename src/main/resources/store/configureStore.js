@@ -1,26 +1,27 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux';
-import thunkMiddleware from 'redux-thunk';
-import createLogger from 'redux-logger';
-import auth from '../reducers/auth';
-import jvm from '../reducers/jvm';
+import { createStore, applyMiddleware } from 'redux'
+import thunkMiddleware from 'redux-thunk'
+import createLogger from 'redux-logger'
+import rootReducer from '../reducers/index'
 import {NEW_JVM} from '../actions/jvm'
 
 const logger = createLogger({
     predicate: (getState, action) => action.type !== NEW_JVM
 });
 
-const reducer = combineReducers(
-    {
-        auth,
-        jvm
-    }
-);
-
-const createStoreWithMiddleware = applyMiddleware(
-    thunkMiddleware,
-    logger
-)(createStore);
-
 export default function configureStore(initialState) {
-    return createStoreWithMiddleware(reducer, initialState);
+    const store = createStore(
+        rootReducer,
+        initialState,
+        applyMiddleware(thunkMiddleware, logger)
+    );
+
+    if (module.hot) {
+        // Enable Webpack hot module replacement for reducers
+        module.hot.accept('../reducers', () => {
+            const nextRootReducer = require('../reducers/index');
+            store.replaceReducer(nextRootReducer)
+        })
+    }
+
+    return store;
 }
