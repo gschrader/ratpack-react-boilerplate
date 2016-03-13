@@ -1,6 +1,7 @@
 import 'isomorphic-fetch';
 import {checkStatus, parseJSON} from './utils';
 import jwt_decode from 'jwt-decode';
+import {connectJvmWS} from './jvm';
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -56,6 +57,7 @@ export function login(user, password) {
                 localStorage.setItem('jv_jwt', json);
                 var data = jwt_decode(json);
                 dispatch(loginSuccess(data['user'], data['name']));
+                dispatch(connectJvmWS());
             })
             .catch(function (error) {
                 const response = error.response;

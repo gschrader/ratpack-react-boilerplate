@@ -1,11 +1,15 @@
 import com.fasterxml.jackson.databind.ObjectMapper
-import org.pac4j.core.profile.UserProfile
+import org.pac4j.http.client.direct.ParameterClient
+import org.pac4j.http.profile.HttpProfile
+import org.pac4j.jwt.credentials.authenticator.JwtAuthenticator
 import org.pac4j.jwt.profile.JwtGenerator
 import ratpack.exec.Blocking
 import ratpack.groovy.template.TextTemplateModule
+import ratpack.pac4j.RatpackPac4j
 import ratpack.react.AuthenticatorService
 import ratpack.react.JVMDataService
 import ratpack.react.Util
+import ratpack.session.SessionModule
 
 import java.time.Duration
 
@@ -21,7 +25,8 @@ def secret = ("McGriddles!" * 10).substring(0, 32)
 ratpack {
 
     bindings {
-        module(TextTemplateModule)
+        module SessionModule
+        module TextTemplateModule
         bindInstance(new JVMDataService())
         bindInstance(new AuthenticatorService())
     }
@@ -31,6 +36,11 @@ ratpack {
     }
 
     handlers {
+        def parameterClient = new ParameterClient("jwt", new JwtAuthenticator(secret))
+        parameterClient.supportGetRequest = true
+
+        all RatpackPac4j.authenticator(parameterClient)
+
         prefix("api") {
             path("login") { ctx ->
                 parse(jsonNode()).then(
@@ -40,7 +50,7 @@ ratpack {
                                         def model = ctx.get(AuthenticatorService).authenticate(data)
                                         JwtGenerator generator = new JwtGenerator(secret, false)
 
-                                        def profile = new UserProfile()
+                                        def profile = new HttpProfile()
                                         profile.addAttribute("name", model.name)
                                         profile.addAttribute("user", model.user)
 
@@ -68,8 +78,12 @@ ratpack {
                 )
             }
 
-            path("jvm") {
-                render json(get(JVMDataService))
+            all RatpackPac4j.requireAuth(ParameterClient)
+
+            prefix("jvm") {
+                get {
+                    render json(get(JVMDataService))
+                }
             }
 
             path("jvmws") { context ->

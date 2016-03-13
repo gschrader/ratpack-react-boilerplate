@@ -101,14 +101,17 @@ function disconnected() {
 
 export function connectJvmWS() {
     return dispatch => {
-        var ws = new WebSocket(urlToWS('/api/jvmws'));
+        var jwt = localStorage.getItem('jv_jwt');
+        if (jwt) {
+            var ws = new WebSocket(urlToWS('/api/jvmws') + '?jwt=' + jwt);
 
-        ws.onmessage = function (message) {
-            dispatch(newJvm(JSON.parse(message.data)));
-        };
+            ws.onmessage = function (message) {
+                dispatch(newJvm(JSON.parse(message.data)));
+            };
 
-        ws.onclose = function () {
-            dispatch(disconnected());
+            ws.onclose = function () {
+                dispatch(disconnected());
+            }
         }
     }
 }
