@@ -17,8 +17,6 @@ export default class Home extends Component {
                 <Panel header="Java Libraries">
                     <ul>
                         <li><a href="https://github.com/ratpack/ratpack" target="_blank">Ratpack</a></li>
-                        <li><a href="https://github.com/ylemoigne/ratpack-jwtauth" target="_blank">ratpack-jwtauth</a>
-                        </li>
                     </ul>
                 </Panel>
 
