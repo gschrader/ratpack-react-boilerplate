@@ -11,7 +11,7 @@ buildscript {
 }
 
 plugins {
-    id "com.moowork.node" version "0.10"
+    id "com.moowork.node" version "0.12"
 }
 
 repositories {
@@ -34,7 +34,7 @@ dependencies {
 }
 
 node {
-    version = "0.12.4"
+    version = "5.11.0"
     download = true
 }
 
