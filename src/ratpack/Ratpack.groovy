@@ -110,7 +110,7 @@ ratpack {
             } else {
                 path = "/"
             }
-            render groovyTemplate([path: path, hot: false], "index.html")
+            render groovyTemplate([path: path, hot: false, title: 'Ratpack React'], "index.html")
         }
     }
 }
