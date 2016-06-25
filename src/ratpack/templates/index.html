@@ -1,21 +1,28 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ratpack React</title>
-    <link rel="stylesheet" href="${model.bundle}bundle.css">
-  </head>
-  <body>
-  <div id="app">
+    <link rel="stylesheet" href="${model.path}bundle.css">
+</head>
+<body>
+
+<div id="app">
 
     <div class="container">
-      <div class="well well-lg" style="position: absolute; top:40%; left: 48%;"><h4 class="text-center">Loading <span class="fa fa-spinner fa-spin"></span></h4>
-      </div>
+        <div class="well well-lg" style="position: absolute; top:40%; left: 48%;"><h4 class="text-center">Loading <span
+                class="fa fa-spinner fa-spin"></span></h4>
+        </div>
     </div>
 
-  </div>
-  </body>
-  <script src="${model.bundle}bundle.js"></script>
+</div>
+
+</body>
+
+<script>
+    var hotReloadEnabled = ${model.hot};
+</script>
+<script src="${model.path}bundle.js"></script>
 
 </html>

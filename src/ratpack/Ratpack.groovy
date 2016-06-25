@@ -102,15 +102,15 @@ ratpack {
         }
 
         all {
-            def bundle
+            def path
             def devUrl = "http://localhost:3000/"
             if (serverConfig.isDevelopment() && Util.isRunning(devUrl)) {
                 // the following is only needed for hot-reloading
-                bundle = devUrl + "static/"
+                path = devUrl + "static/"
             } else {
-                bundle = "/"
+                path = "/"
             }
-            render groovyTemplate([bundle: bundle], "index.html")
+            render groovyTemplate([path: path, hot: false], "index.html")
         }
     }
 }
