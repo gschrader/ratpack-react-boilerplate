@@ -106,7 +106,7 @@ ratpack {
             def devUrl = "http://localhost:3000/"
             if (serverConfig.isDevelopment() && Util.isRunning(devUrl)) {
                 // the following is only needed for hot-reloading
-                path = devUrl + "static/"
+                path = devUrl
             } else {
                 path = "/"
             }
