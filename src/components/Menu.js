@@ -25,10 +25,6 @@ export default class Header extends Component {
                                 <Link to="/">Ratpack React Boilerplate</Link>
                             </Navbar.Brand>
                         </LinkContainer>
-                        {hotReloadEnabled ?
-                            <Label bsStyle="success">
-                                Hot Reloading
-                            </Label> : <div/>}
                         <Navbar.Toggle />
                     </Navbar.Header>
                     <Navbar.Collapse>
