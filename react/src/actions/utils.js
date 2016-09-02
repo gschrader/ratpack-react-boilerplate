@@ -13,7 +13,12 @@ export function parseJSON(response) {
 
 export function urlToWS(s) {
     var l = window.location;
-
-    return ((l.protocol === 'https:') ? 'wss://' : 'ws://') + l.hostname + (((l.port != 80) && (l.port != 443)) ? ':' + l.port : '') + s;
+    var port;
+    if (process.env.NODE_ENV === 'production') {
+      port = l.port;
+    } else {
+      port = 5050;
+    }
+    return ((l.protocol === 'https:') ? 'wss://' : 'ws://') + l.hostname + ':' + port + s;
 }
 

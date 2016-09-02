@@ -6,6 +6,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "proxy": "http://localhost:5050",
@@ -31,17 +32,16 @@
   "bugs": {
     "url": "https://github.com/gschrader/ratpack-react-boilerplate/issues"
   },
-  "homepage": "https://github.com/gschrader/ratpack-react-boilerplate",
   "devDependencies": {
-    "react-scripts": "0.3.0-alpha"
+    "react-scripts": "0.3.1"
   },
   "dependencies": {
     "bootstrap": "^3.3.6",
     "countdown": "^2.6.0",
     "jwt-decode": "^2.0.1",
-    "pretty-bytes": "^3.0.1",
+    "pretty-bytes": "^4.0.2",
     "react": "^15.2.1",
-    "react-bootstrap": "^0.29.5",
+    "react-bootstrap": "^0.30.3",
     "react-dom": "^15.2.1",
     "react-fa": "^4.1.2",
     "react-redux": "^4.4.5",

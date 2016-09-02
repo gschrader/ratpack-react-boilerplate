@@ -1,0 +1,26 @@
+plugins {
+  id "com.moowork.node" version "0.13"
+}
+
+node {
+    version = "6.5.0"
+    download = true
+}
+
+task appNpmBuild(type: NpmTask) {
+    args = ['run', 'build']
+}
+
+apply plugin: "java"
+
+buildDir = new File("gradleBuild")
+
+sourceSets {
+    main {
+      resources {
+              srcDir 'build'
+          }
+      }
+}
+
+tasks.processResources.dependsOn = ['appNpmBuild']

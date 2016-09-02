@@ -4,6 +4,7 @@ import org.pac4j.http.profile.HttpProfile
 import org.pac4j.jwt.credentials.authenticator.JwtAuthenticator
 import org.pac4j.jwt.profile.JwtGenerator
 import ratpack.exec.Blocking
+import ratpack.file.MimeTypes
 import ratpack.groovy.template.TextTemplateModule
 import ratpack.pac4j.RatpackPac4j
 import ratpack.react.AuthenticatorService
@@ -92,12 +93,21 @@ ratpack {
             }
         }
 
-        files {
-            dir "static"
+        get('static/:type/:id') { context ->
+            def path = "/static/${context.pathTokens['type']}/${context.pathTokens['id']}"
+            InputStream resourceStream = getClass().getResourceAsStream(path)
+            if (resourceStream) {
+                def contentType = context.get(MimeTypes).getContentType(path)
+                context.response.send(contentType, resourceStream.bytes)
+            } else {
+                context.next()
+            }
+
         }
 
+
         all {
-            render groovyTemplate([title: 'Ratpack React'], "index.html")
+            render groovyTemplate([:], "index.html")
         }
     }
 }

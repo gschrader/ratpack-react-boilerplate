@@ -1,0 +1,3 @@
+include 'react'
+include 'ratpack'
+rootProject.name = 'ratpack-react-boilerplate'
