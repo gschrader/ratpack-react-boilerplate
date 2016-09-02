@@ -11,6 +11,10 @@ task appNpmBuild(type: NpmTask) {
     args = ['run', 'build']
 }
 
+task npmInstall2(type: NpmTask) {
+    args = ['install']
+}
+
 apply plugin: "java"
 
 buildDir = new File("gradleBuild")
