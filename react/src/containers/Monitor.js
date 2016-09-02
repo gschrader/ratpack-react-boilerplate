@@ -23,7 +23,7 @@ class Monitor extends Component {
                         <List>
                             <Item label="Uptime" value={Countdown(0, this.props.last.uptime).toString()}/>
                             <Item label="GC Time" value={gcTimeStr}/>
-                            <Item label="CPU"> <ProgressBar now={cpupct} label="%(percent)s%"/></Item>
+                            <Item label="CPU"> <ProgressBar now={cpupct} label={`${cpupct}%`}/></Item>
                         </List>
 
                     </Panel>
@@ -42,8 +42,8 @@ class Monitor extends Component {
                         <Row>
                             <Col md={12}>
                                 <ProgressBar>
-                                    <ProgressBar bsStyle="danger" now={usedpct} key={1} label="%(percent)s%"/>
-                                    <ProgressBar bsStyle="success" now={freepct} key={2} label="%(percent)s%"/>
+                                    <ProgressBar bsStyle="danger" now={usedpct} key={1} label={`${usedpct}%`}/>
+                                    <ProgressBar bsStyle="success" now={freepct} key={2} label={`${freepct}%`}/>
                                 </ProgressBar>
                             </Col>
                         </Row>
