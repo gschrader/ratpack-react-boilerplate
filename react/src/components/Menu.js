@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {Navbar, Nav, NavItem, NavDropdown, Label, MenuItem, Modal, NavbarBrand} from 'react-bootstrap';
+import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Link } from 'react-router';
 

@@ -1,4 +1,4 @@
-import {checkStatus, parseJSON, urlToWS, getHeaders} from './utils';
+import {checkStatus, parseJSON, urlToWS} from './utils';
 
 export const FETCH_JVM_REQUEST = 'FETCH_JVM_REQUEST';
 export const FETCH_JVM_SUCCESS = 'FETCH_JVM_SUCCESS';
@@ -22,66 +22,6 @@ function fetchJvmSuccess(data) {
 function fetchJvmFailure(error) {
     return {
         type: FETCH_JVM_FAILURE,
-        error: error
-    };
-}
-
-function fetchRuntimeRequest() {
-    return {
-        type: FETCH_RUNTIME_REQUEST
-    };
-}
-
-function fetchRuntimeSuccess(data) {
-    return {
-        type: FETCH_RUNTIME_SUCCESS,
-        data: data
-    };
-}
-
-function fetchRuntimeFailure(error) {
-    return {
-        type: FETCH_RUNTIME_FAILURE,
-        error: error
-    };
-}
-
-function forceGCRequest() {
-    return {
-        type: FORCE_GC_REQUEST
-    };
-}
-
-function forceGCSuccess(data) {
-    return {
-        type: FORCE_GC_SUCCESS,
-        data: data
-    };
-}
-
-function forceGCFailure(error) {
-    return {
-        type: FORCE_GC_FAILURE,
-        error: error
-    };
-}
-
-function shutdownRequest() {
-    return {
-        type: SHUTDOWN_REQUEST
-    };
-}
-
-function shutdownSuccess(data) {
-    return {
-        type: SHUTDOWN_SUCCESS,
-        data: data
-    };
-}
-
-function shutdownFailure(error) {
-    return {
-        type: SHUTDOWN_FAILURE,
         error: error
     };
 }
