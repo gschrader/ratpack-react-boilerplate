@@ -27,4 +27,9 @@ sourceSets {
       }
 }
 
-tasks.processResources.dependsOn = ['appNpmBuild']
+task cleanNpm() {
+    delete 'build'
+}
+
+processResources.dependsOn = ['appNpmBuild']
+clean.dependsOn("cleanNpm")
