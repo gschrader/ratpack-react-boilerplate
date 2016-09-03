@@ -25,7 +25,7 @@ class Login extends Component {
     }
 
     render() {
-        const {user, loginError} = this.props;
+        const {loginError} = this.props;
         return (
             <Modal show={true} onHide={this.handleLogin}>
                 <Modal.Header>

@@ -6,13 +6,7 @@ import {logout, autoLogin} from '../actions/auth';
 import {connectJvmWS} from '../actions/jvm';
 import {Modal} from 'react-bootstrap';
 
-import Icon from 'react-fa';
-
 class App extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     componentWillMount() {
         this.props.dispatch(autoLogin());
         this.props.dispatch(connectJvmWS());

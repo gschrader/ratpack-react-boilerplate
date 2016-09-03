@@ -1,5 +1,3 @@
-import 'babel-polyfill';
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -32,5 +30,5 @@ ReactDOM.render(
             </Route>
         </Router>
     </Provider>,
-    document.getElementById('app')
+    document.getElementById('root')
 );

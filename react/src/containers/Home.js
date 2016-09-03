@@ -9,7 +9,7 @@ export default class Home extends Component {
                     <h1>Ratpack React Boilerplate</h1>
 
                     <p>
-                        The minimal dev environment to enable live-editing React components from a ratpack
+                        The minimal dev environment to enable live-editing React components from a Ratpack
                         server </p>
 
                 </Jumbotron>
@@ -23,7 +23,7 @@ export default class Home extends Component {
                 <Panel header="node.js Libraries">
                     <ul>
                         <li><a href="https://github.com/facebook/react" target="_blank">React</a></li>
-                        <li><a href="https://github.com/rackt/redux" target="_blank">Redux</a></li>
+                        <li><a href="https://github.com/reactjs/redux" target="_blank">Redux</a></li>
                         <li><a href="https://github.com/react-bootstrap/react-bootstrap" target="_blank">React
                             Bootstrap</a></li>
                         <li><a href="https://github.com/rackt/react-router" target="_blank">React Router</a></li>

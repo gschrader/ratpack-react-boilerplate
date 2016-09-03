@@ -18,10 +18,6 @@ export class Item extends Component {
 }
 
 export class PropertyList extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     static createName(name) {
         var convertedString = [];
 
@@ -43,7 +39,7 @@ export class PropertyList extends Component {
             for (var i = 1; i < name.length; i++) {
                 var c = name[i];
 
-                if (isUpperCase(c) && (isDigit(name[i - 1]) || isLowerCase(name[i - 1]) || (isUpperCase(name[i - 1]) && i != (name.length - 1) && isLowerCase(name[i + 1])))) {
+                if (isUpperCase(c) && (isDigit(name[i - 1]) || isLowerCase(name[i - 1]) || (isUpperCase(name[i - 1]) && i !== (name.length - 1) && isLowerCase(name[i + 1])))) {
                     convertedString.push(' ');
                 }
                 convertedString.push(c);
@@ -53,15 +49,6 @@ export class PropertyList extends Component {
     }
 
     render() {
-        var items = Object.keys(this.props.object).map(p => {
-            var value = this.props.object[p];
-            var label = PropertyList.createName(p);
-            if (value != null) {
-                value = value.toString();
-            }
-            return (<Item key={p} label={label} value={value} dl={this.props.dl}/>);
-        });
-
         return (
             <div>
                 {this.props.children}

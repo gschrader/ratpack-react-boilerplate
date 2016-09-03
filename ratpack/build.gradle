@@ -1,0 +1,24 @@
+buildscript {
+  repositories {
+    jcenter()
+  }
+  dependencies {
+    classpath "io.ratpack:ratpack-gradle:1.4.1"
+  }
+}
+
+apply plugin: "io.ratpack.ratpack-groovy"
+
+repositories {
+  jcenter()
+}
+
+dependencies {
+  runtime "org.slf4j:slf4j-simple:1.7.21"
+  compile ratpack.dependency('pac4j')
+  compile "org.pac4j:pac4j-jwt:1.8.5"
+
+  testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
+
+  compile project(':react')
+}

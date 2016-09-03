@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {Navbar, Nav, NavItem, NavDropdown, Label, MenuItem, Modal, NavbarBrand} from 'react-bootstrap';
+import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Link } from 'react-router';
 
@@ -25,10 +25,6 @@ export default class Header extends Component {
                                 <Link to="/">Ratpack React Boilerplate</Link>
                             </Navbar.Brand>
                         </LinkContainer>
-                        {hotReloadEnabled ?
-                            <Label bsStyle="success">
-                                Hot Reloading
-                            </Label> : <div/>}
                         <Navbar.Toggle />
                     </Navbar.Header>
                     <Navbar.Collapse>
