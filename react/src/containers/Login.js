@@ -1,7 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {login} from '../actions/auth';
-import {Modal, Button, Input, Alert} from 'react-bootstrap';
+import {Modal, Button, FormControl, FormGroup, Alert} from 'react-bootstrap';
+import ReactDOM from 'react-dom';
 
 class Login extends Component {
     constructor(props) {
@@ -17,9 +18,9 @@ class Login extends Component {
 
     handleLogin(event) {
         event.preventDefault();
-        const username = this.refs.username;
-        const password = this.refs.password;
-        this.props.dispatch(login(username.getValue(), password.getValue()));
+        const username = ReactDOM.findDOMNode(this.refs.username);
+        const password = ReactDOM.findDOMNode(this.refs.password);
+        this.props.dispatch(login(username.value, password.value));
         username.value = '';
         password.value = '';
     }
@@ -27,40 +28,35 @@ class Login extends Component {
     render() {
         const {loginError} = this.props;
         return (
-            <Modal show={true} onHide={this.handleLogin}>
-                <Modal.Header>
-                    <Modal.Title>Welcome</Modal.Title>
-                </Modal.Header>
+            <div>
+                foo
+                <Modal show={true} onHide={this.handleLogin}>
+                    <Modal.Header>
+                        <Modal.Title>Welcome</Modal.Title>
+                    </Modal.Header>
 
-                <Modal.Body>
+                    <Modal.Body>
 
-                    {loginError ?
-                        <Alert bsStyle='warning'>
-                            {loginError.message}
-                        </Alert> : <div/>}
+                        {loginError
+                            ? <Alert bsStyle='warning'>
+                                    {loginError.message}
+                                </Alert>
+                            : <div/>}
 
-                    <form>
-                        <Input type="text" className="form-control" name='username' id='username'
-                               spellCheck="false" autoCapitalize="off"
-                               ref="username"
-                               autoFocus
-                               autoComplete="off" autoCorrect="off" placeholder="Username">
-                        </Input>
+                        <form>
+                            <FormGroup>
+                                <FormControl id="username" ref="username" type="text" label="Username" placeholder="Username"/>
+                                <FormControl id="password" ref="password" label="Password" type="password" placeholder="password"/>
+                            </FormGroup>
+                        </form>
 
-                        <Input type="password" name='password' id="password"
-                               ref="password"
-                               className="form-control"
-                               placeholder="Password"
-                               required>
-                        </Input>
-                    </form>
+                    </Modal.Body>
 
-                </Modal.Body>
-
-                <Modal.Footer>
-                    <Button bsStyle='primary' onClick={this.handleLogin}>Sign in</Button>
-                </Modal.Footer>
-            </Modal>
+                    <Modal.Footer>
+                        <Button bsStyle='primary' onClick={this.handleLogin}>Sign in</Button>
+                    </Modal.Footer>
+                </Modal>
+            </div>
         )
     }
 }
@@ -86,5 +82,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps)(Login);
-
-
