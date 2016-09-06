@@ -29,7 +29,7 @@ export default class Header extends Component {
                     </Navbar.Header>
                     <Navbar.Collapse>
                         <Nav pullRight eventKey={1}>
-                            <LinkContainer to="/monitor" query={{}}>
+                            <LinkContainer to="/monitor">
                                 <NavItem eventKey={2}>Monitor</NavItem>
                             </LinkContainer>
                             {name ?
