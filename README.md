@@ -1,6 +1,8 @@
 ratpack-react-boilerplate
 =====================
 
+[![Build Status](https://travis-ci.org/gschrader/ratpack-react-boilerplate.svg?branch=master)](https://travis-ci.org/gschrader/ratpack-react-boilerplate)
+
 An example single page app with the server using Ratpack and the frontend using React. In a development environment the React components can be live edited so that a browser refresh isn't requierd.
 
 It uses [create-react-app](https://github.com/facebookincubator/create-react-app) because who can keep up with all the build configuration required to build javascript these days.
