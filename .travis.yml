@@ -8,4 +8,4 @@ cache:
 jdk:
 - oraclejdk8
 
-script: ./gradlew npmInstall assemble
+script: ./gradlew assemble
