@@ -1,8 +1,26 @@
 import React, {Component} from 'react';
 import {Jumbotron, Panel} from 'react-bootstrap';
+import ReactMarkdown from 'react-markdown';
 
 export default class Home extends Component {
-    render() {
+    state = {
+        readme: ""
+    };
+
+    loadReadme() {
+       fetch("readme")
+             .then(response => response.text())
+             .then(text =>
+                 this.setState({
+                 readme: text
+             }));
+       }
+
+     componentDidMount() {
+       this.loadReadme();
+     }
+
+     render() {
         return (
             <div className="container">
                 <Jumbotron>
@@ -14,20 +32,8 @@ export default class Home extends Component {
 
                 </Jumbotron>
 
-                <Panel header="Java Libraries">
-                    <ul>
-                        <li><a href="https://github.com/ratpack/ratpack" target="_blank">Ratpack</a></li>
-                    </ul>
-                </Panel>
-
-                <Panel header="node.js Libraries">
-                    <ul>
-                        <li><a href="https://github.com/facebook/react" target="_blank">React</a></li>
-                        <li><a href="https://github.com/reactjs/redux" target="_blank">Redux</a></li>
-                        <li><a href="https://github.com/react-bootstrap/react-bootstrap" target="_blank">React
-                            Bootstrap</a></li>
-                        <li><a href="https://github.com/reactjs/react-router" target="_blank">React Router</a></li>
-                    </ul>
+                <Panel>
+                    <ReactMarkdown source={this.state.readme} />
                 </Panel>
             </div>
         );

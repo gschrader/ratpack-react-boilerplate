@@ -106,6 +106,10 @@ ratpack {
         }
 
 
+        get('readme') {
+            render "https://raw.githubusercontent.com/gschrader/ratpack-react-boilerplate/master/README.md".toURL().text
+        }
+
         all {
             render groovyTemplate([:], "index.html")
         }
