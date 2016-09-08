@@ -34,8 +34,7 @@ export default class Header extends Component {
                             </LinkContainer>
                             {name ?
                                 <NavDropdown eventKey={4} title={name} id="user-menu">
-                                    <MenuItem eventKey={5} onSelect={ event=>this.onLogoutClick(event)}>Log
-                                        out</MenuItem>
+                                    <MenuItem eventKey={5} onSelect={this.props.handleLogout}>Log out</MenuItem>
                                 </NavDropdown>
                                 : <div/>}
                         </Nav>
