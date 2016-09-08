@@ -26,7 +26,7 @@ export default class Home extends Component {
                         <li><a href="https://github.com/reactjs/redux" target="_blank">Redux</a></li>
                         <li><a href="https://github.com/react-bootstrap/react-bootstrap" target="_blank">React
                             Bootstrap</a></li>
-                        <li><a href="https://github.com/rackt/react-router" target="_blank">React Router</a></li>
+                        <li><a href="https://github.com/reactjs/react-router" target="_blank">React Router</a></li>
                     </ul>
                 </Panel>
             </div>
