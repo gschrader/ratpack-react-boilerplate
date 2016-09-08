@@ -3,7 +3,3 @@ apply plugin: "idea"
 task wrapper(type: Wrapper) {
     gradleVersion = '3.0'
 }
-
-task stage {
-  dependsOn clean, build
-}
