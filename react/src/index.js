@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, browserHistory} from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux'
 
 import configureStore from './store/configureStore';
 
@@ -15,10 +16,11 @@ import NotFound from './containers/NotFound';
 import  'bootstrap/dist/css/bootstrap.css';
 
 const store = configureStore();
+const history = syncHistoryWithStore(browserHistory, store)
 
 ReactDOM.render(
     <Provider store={store}>
-        <Router history={browserHistory}>
+        <Router history={history}>
             <Route path="/" component={App}>
                 <IndexRoute component={Home}/>
                 <Route path="/login" component={Login}/>

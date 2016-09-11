@@ -28,15 +28,15 @@ export default class Header extends Component {
                         <Navbar.Toggle />
                     </Navbar.Header>
                     <Navbar.Collapse>
-                        <Nav pullRight eventKey={1}>
+                        <Nav pullRight>
                             <LinkContainer to="/monitor">
-                                <NavItem eventKey={2}>Monitor</NavItem>
+                                <NavItem>Monitor</NavItem>
                             </LinkContainer>
                             {name ?
-                                <NavDropdown eventKey={4} title={name} id="user-menu">
-                                    <MenuItem eventKey={5} onSelect={this.props.handleLogout}>Log out</MenuItem>
+                                <NavDropdown title={name} id="user-menu">
+                                    <MenuItem onSelect={this.props.handleLogout}>Log out</MenuItem>
                                 </NavDropdown>
-                                : <div/>}
+                                : <NavItem/>}
                         </Nav>
 
                     </Navbar.Collapse>

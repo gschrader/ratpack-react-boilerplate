@@ -29,7 +29,6 @@ class Login extends Component {
         const {loginError} = this.props;
         return (
             <div>
-                foo
                 <Modal show={true} onHide={this.handleLogin}>
                     <Modal.Header>
                         <Modal.Title>Welcome</Modal.Title>
