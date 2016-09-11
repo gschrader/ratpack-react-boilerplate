@@ -36,6 +36,30 @@ The Ratpack server (port 5050) will serve up the production optimized built java
  * [React Router](https://github.com/reactjs/react-router)
  * [Others](https://david-dm.org/gschrader/ratpack-react-boilerplate?path=react)
 
+### File Structure ###
+
+```
+.
+├── build.gradle
+├── ratpack
+│   ├── build.gradle                  # gradle file for building server
+│   └── src
+│       ├── main
+│       │   ├── groovy                # java source
+│       │   └── resources             
+│       └── ratpack
+│           ├── Ratpack.groovy        # server handling
+│           └── templates
+│               └── index.html -> ../../../../react/build/index.html
+│                                     # sym-linked, built from npm
+├── react
+│   ├── build.gradle                  # gradle file which builds the js/css
+│   ├── index.html                    # index file template
+│   ├── package.json                  # add additional node libraries as needed
+│   └── src                           # react/redux javascript code
+└── settings.gradle                   # for multi-project build
+
+```
 
 ### Windows ###
 The `/ratpack/src/ratpack/template/index.html` should be sym-linked to `/react/build/index.html`. In order to do that you can use PowerShell to create the link with the following command:
