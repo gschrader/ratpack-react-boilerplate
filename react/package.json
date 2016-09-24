@@ -30,7 +30,7 @@
     "url": "https://github.com/gschrader/ratpack-react-boilerplate/issues"
   },
   "devDependencies": {
-    "react-scripts": "0.3.1"
+    "react-scripts": "^0.5.1"
   },
   "dependencies": {
     "bootstrap": "^3.3.6",
