@@ -22,3 +22,7 @@ dependencies {
 
   compile project(':react')
 }
+
+task stage {
+  dependsOn installDist
+}
