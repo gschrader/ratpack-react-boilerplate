@@ -25,6 +25,9 @@ export default class Header extends Component {
                                 <Link to="/">Ratpack React Boilerplate</Link>
                             </Navbar.Brand>
                         </LinkContainer>
+                        <Navbar.Text>
+                            <small><b>{process.env.NODE_ENV}</b> mode</small>
+                        </Navbar.Text>
                         <Navbar.Toggle />
                     </Navbar.Header>
                     <Navbar.Collapse>

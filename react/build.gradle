@@ -1,18 +1,5 @@
 plugins {
-  id "com.moowork.node" version "0.13"
-}
-
-node {
-    version = "6.5.0"
-    download = true
-}
-
-task appNpmBuild(type: NpmTask, dependsOn: 'npmInstall2') {
-    args = ['run', 'build']
-}
-
-task npmInstall2(type: NpmTask) {
-    args = ['install']
+    id "com.moowork.node" version "1.0.1"
 }
 
 apply plugin: "java"
@@ -27,9 +14,9 @@ sourceSets {
       }
 }
 
-task cleanNpm() {
+task cleanNode() {
     delete 'build'
 }
 
-processResources.dependsOn = ['appNpmBuild']
-clean.dependsOn("cleanNpm")
+processResources.dependsOn = ['yarn_build']
+clean.dependsOn("cleanNode")

@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {Panel, ProgressBar, Row, Col} from 'react-bootstrap';
 import List, { Item } from '../components/List';
 import Countdown from 'countdown';
-import prettyBytes from 'pretty-bytes';
+import bytes from 'bytes';
 
 class Monitor extends Component {
 
@@ -32,10 +32,10 @@ class Monitor extends Component {
                         <Row>
                             <Col md={6}>
                                 <List>
-                                    <Item label="Used" value={prettyBytes(this.props.last.used)}/>
-                                    <Item label="Free" value={prettyBytes(this.props.last.free)}/>
-                                    <Item label="Total" value={prettyBytes(this.props.last.total)}/>
-                                    <Item label="Max" value={prettyBytes(this.props.last.max)}/>
+                                    <Item label="Used" value={bytes(this.props.last.used)}/>
+                                    <Item label="Free" value={bytes(this.props.last.free)}/>
+                                    <Item label="Total" value={bytes(this.props.last.total)}/>
+                                    <Item label="Max" value={bytes(this.props.last.max)}/>
                                 </List>
                             </Col>
                         </Row>

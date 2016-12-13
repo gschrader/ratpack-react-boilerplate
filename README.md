@@ -13,9 +13,10 @@ It handles authentication via the Ratpack Pac4j module using JSON Web Tokens (JW
 
 ### Usage
 
-* `gradlew :react:npmInstall` or `npm install` from the `react` directory
-* `gradlew :react:npm_start` or `npm start` from the `react` directory
-* `gradlew run`
+* `./gradlew yarn_install` or `yarn install` from the `react` directory
+* `./gradlew yarn_build` or `yarn build` from the `react` directory
+* `./gradlew yarn_start` or `yarn start` from the `react` directory
+* `./gradlew run`
 * the browser will open using port 3000
 
 Now edit files under `react/src`.
@@ -23,7 +24,7 @@ Your changes will appear without reloading the browser like this:
 
 ![Demo](./demo.gif)
 
-New npm dependencies can be added to `react/package.json`.
+New node dependencies can be added to `react/package.json`.
 
 The node server (port 3000) proxies api requests to the Ratpack server.
 The Ratpack server (port 5050) will serve up the production optimized built javascript/css assets.
@@ -50,7 +51,7 @@ The Ratpack server (port 5050) will serve up the production optimized built java
 │           ├── Ratpack.groovy        # server handling
 │           └── templates
 │               └── index.html -> ../../../../react/build/index.html
-│                                     # sym-linked, built from npm
+│                                     # sym-linked, built from node
 ├── react
 │   ├── build.gradle                  # gradle file which builds the js/css
 │   ├── index.html                    # index file template
