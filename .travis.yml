@@ -1,4 +1,4 @@
-language: groovy
+language: node_js
 sudo: required
 before_install: # if "install" is overridden
   # Repo for Yarn
