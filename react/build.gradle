@@ -16,7 +16,9 @@ sourceSets {
 
 task cleanNode() {
     delete 'build'
+    delete 'node_modules'
 }
 
 processResources.dependsOn = ['yarn_build']
+yarn_build.dependsOn = ['yarn_install']
 clean.dependsOn("cleanNode")
