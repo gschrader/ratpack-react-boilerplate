@@ -13,5 +13,6 @@ cache:
 
 jdk:
 - oraclejdk8
-
+node_js:
+  - "6"
 script: ./gradlew assemble
