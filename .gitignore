@@ -9,3 +9,8 @@ build
 *.log
 *.log.gz
 react/gradleBuild
+.classpath
+.project
+.settings/
+.vscode
+bin/

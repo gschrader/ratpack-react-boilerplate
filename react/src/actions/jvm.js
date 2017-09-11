@@ -3,6 +3,7 @@ import {checkStatus, parseJSON, urlToWS} from './utils';
 export const FETCH_JVM_REQUEST = 'FETCH_JVM_REQUEST';
 export const FETCH_JVM_SUCCESS = 'FETCH_JVM_SUCCESS';
 export const FETCH_JVM_FAILURE = 'FETCH_JVM_FAILURE';
+export const FETCH_RUNTIME_SUCCESS = 'FETCH_RUNTIME_SUCCESS';
 export const NEW_JVM = 'NEW_JVM';
 export const DISCONNECTED = 'DISCONNECTED';
 
