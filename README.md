@@ -2,7 +2,7 @@ ratpack-react-boilerplate
 =====================
 
 [![Build Status](https://travis-ci.org/gschrader/ratpack-react-boilerplate.svg?branch=master)](https://travis-ci.org/gschrader/ratpack-react-boilerplate)
-[![Dependency Status](https://www.versioneye.com/user/projects/57e45bda79806f0039830b2d/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/57e45bda79806f0039830b2d)
+[![dependencies Status](https://david-dm.org/gschrader/ratpack-react-boilerplate/status.svg)](https://david-dm.org/gschrader/ratpack-react-boilerplate)
 [![License](https://img.shields.io/github/license/gschrader/ratpack-react-boilerplate.svg)](https://raw.githubusercontent.com/gschrader/ratpack-react-boilerplate/master/LICENSE)
 
 An example single page app with the server using Ratpack and the frontend using React. In a development environment the React components can be live edited so that a browser refresh isn't requierd.
