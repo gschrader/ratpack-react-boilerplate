@@ -1,1 +1,1 @@
-web: ratpack/build/install/ratpack/bin/ratpack
+web: RATPACK_PORT=$PORT ./gradlew run
