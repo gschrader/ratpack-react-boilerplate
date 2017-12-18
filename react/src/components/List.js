@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Row, Col} from 'react-bootstrap';
+import PropTypes from 'prop-types';
 
 export class Item extends Component {
     render() {
@@ -56,7 +57,7 @@ export class PropertyList extends Component {
         )
     }
 }
-PropertyList.propTypes = {object: React.PropTypes.object};
+PropertyList.propTypes = {object: PropTypes.object};
 PropertyList.defaultProps = {object: {}};
 
 

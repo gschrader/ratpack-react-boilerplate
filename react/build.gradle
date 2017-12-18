@@ -1,5 +1,5 @@
 plugins {
-    id "com.moowork.node" version "1.0.1"
+    id "com.moowork.node" version "1.2.0"
 }
 
 apply plugin: "java"
@@ -21,4 +21,5 @@ task cleanNode() {
 
 processResources.dependsOn = ['yarn_build']
 yarn_build.dependsOn = ['yarn_install']
+yarn_start.dependsOn = ['yarn_install']
 clean.dependsOn("cleanNode")

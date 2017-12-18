@@ -1,8 +1,9 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {login} from '../actions/auth';
 import {Modal, Button, FormControl, FormGroup, Alert} from 'react-bootstrap';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 
 class Login extends Component {
     constructor(props) {

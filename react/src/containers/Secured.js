@@ -1,5 +1,6 @@
-import {Component, PropTypes} from 'react';
+import {Component} from 'react';
 import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 
 class Secured extends Component {
     componentWillMount() {

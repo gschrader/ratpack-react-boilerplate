@@ -1,6 +1,7 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Menu from '../components/Menu';
+import PropTypes from 'prop-types';
 
 import {logout, autoLogin} from '../actions/auth';
 import {connectJvmWS} from '../actions/jvm';
