@@ -3,7 +3,7 @@ buildscript {
     jcenter()
   }
   dependencies {
-    classpath "io.ratpack:ratpack-gradle:1.5.1"
+    classpath "io.ratpack:ratpack-gradle:1.6.0"
   }
 }
 
