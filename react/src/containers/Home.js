@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Jumbotron, Panel} from 'react-bootstrap';
+import {Jumbotron, Card} from 'react-bootstrap';
 import ReactMarkdown from 'react-markdown';
 
 export default class Home extends Component {
@@ -32,9 +32,9 @@ export default class Home extends Component {
 
                 </Jumbotron>
 
-                <Panel>
+                <Card>
                     <ReactMarkdown source={this.state.readme} />
-                </Panel>
+                </Card>
             </div>
         );
     }

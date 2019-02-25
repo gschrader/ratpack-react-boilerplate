@@ -1,20 +1,15 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
 import {login} from '../actions/auth';
-import {Modal, Button, FormControl, FormGroup, Alert} from 'react-bootstrap';
+import {Alert, Button, FormControl, FormGroup, Modal} from 'react-bootstrap';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import {Redirect} from 'react-router-dom';
+import {connect} from 'react-redux';
 
 class Login extends Component {
     constructor(props) {
         super(props);
         this.handleLogin = this.handleLogin.bind(this);
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.user) {
-            this.context.router.replace('/');
-        }
     }
 
     handleLogin(event) {
@@ -27,52 +22,64 @@ class Login extends Component {
     }
 
     render() {
-        const {loginError} = this.props;
-        return (
-            <div>
-                <Modal show={true} onHide={this.handleLogin}>
-                    <Modal.Header>
-                        <Modal.Title>Welcome</Modal.Title>
-                    </Modal.Header>
+        if (this.props.user != null ) {
+            return <Redirect to={{
+                pathname: '/'
+            }}/>
+        } else {
+            const {loginError} = this.props;
+            return (
+                <div>
+                    <Modal show={true} onHide={this.handleLogin}>
+                        <Modal.Header>
+                            <Modal.Title>Welcome</Modal.Title>
+                        </Modal.Header>
 
-                    <Modal.Body>
+                        <Modal.Body>
 
-                        {loginError
-                            ? <Alert bsStyle='warning'>
+                            {loginError
+                                ? <Alert variant='warning'>
                                     {loginError.message}
                                 </Alert>
-                            : <div/>}
+                                : React.Fragment}
 
-                        <form>
-                            <FormGroup>
-                                <FormControl id="username" ref="username" type="text" label="Username" placeholder="Username"/>
-                                <FormControl id="password" ref="password" label="Password" type="password" placeholder="password"/>
-                            </FormGroup>
-                        </form>
+                            <form>
+                                <FormGroup>
+                                    <FormControl id="username" ref="username" type="text" label="Username"
+                                                 placeholder="Username"/>
+                                    <FormControl id="password" ref="password" label="Password" type="password"
+                                                 placeholder="password"/>
+                                </FormGroup>
+                            </form>
 
-                    </Modal.Body>
+                        </Modal.Body>
 
-                    <Modal.Footer>
-                        <Button bsStyle='primary' onClick={this.handleLogin}>Sign in</Button>
-                    </Modal.Footer>
-                </Modal>
-            </div>
-        )
+                        <Modal.Footer>
+                            <Button variant="primary" onClick={this.handleLogin}>Sign in</Button>
+                        </Modal.Footer>
+                    </Modal>
+                </div>
+            )
+        }
     }
 }
 
-Login.contextTypes = {
+Login
+    .contextTypes = {
     router: PropTypes.object.isRequired,
     store: PropTypes.object.isRequired
 };
 
-Login.propTypes = {
+Login
+    .propTypes = {
     user: PropTypes.string,
     loginError: PropTypes.object,
     dispatch: PropTypes.func.isRequired
 };
 
-function mapStateToProps(state) {
+function
+
+mapStateToProps(state) {
     const {auth} = state;
     if (auth) {
         return {user: auth.user, loginError: auth.loginError};

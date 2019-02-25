@@ -1,15 +1,9 @@
 import React, {Component} from 'react';
-import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
-import { Link } from 'react-router';
+import {Nav, Navbar, NavDropdown} from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import {LinkContainer} from 'react-router-bootstrap';
 
 export default class Header extends Component {
-    onLogoutClick(event) {
-        event.preventDefault();
-        this.props.handleLogout();
-    }
-
     render() {
         const {name} = this.props;
         const pathname = this.props.location.pathname;
@@ -17,35 +11,30 @@ export default class Header extends Component {
 
         return (
             !isLoginPage &&
-            <div>
-
-                <Navbar>
-                    <Navbar.Header>
-                        <LinkContainer to={{pathname: '/'}}>
-                            <Navbar.Brand>
-                                <Link to="/">Ratpack React Boilerplate</Link>
-                            </Navbar.Brand>
+            <Navbar bg="light" expand="lg">
+                <Navbar.Brand href="/">Ratpack React Boilerplate</Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="mr-auto">
+                        <LinkContainer to="/">
+                            <Nav.Link>Home</Nav.Link>
                         </LinkContainer>
-                        <Navbar.Text>
-                            <small><b>{process.env.NODE_ENV}</b> mode</small>
-                        </Navbar.Text>
-                        <Navbar.Toggle />
-                    </Navbar.Header>
-                    <Navbar.Collapse>
-                        <Nav pullRight>
-                            <LinkContainer to="/monitor">
-                                <NavItem>Monitor</NavItem>
-                            </LinkContainer>
-                            {name ?
-                                <NavDropdown title={name} id="user-menu">
-                                    <MenuItem onSelect={this.props.handleLogout}>Log out</MenuItem>
-                                </NavDropdown>
-                                : <NavItem/>}
-                        </Nav>
+                        <LinkContainer to="/monitor">
+                            <Nav.Link>Monitor</Nav.Link>
+                        </LinkContainer>
 
-                    </Navbar.Collapse>
-                </Navbar>
-            </div>
+                        {name ?
+                        <NavDropdown title={name} id="basic-nav-dropdown">
+                            <NavDropdown.Item onSelect={this.props.handleLogout}>Log out</NavDropdown.Item>
+                        </NavDropdown>
+                            :
+                            <LinkContainer to="/login">
+                                <Nav.Link>Log in</Nav.Link>
+                            </LinkContainer>
+                        }
+                    </Nav>
+                </Navbar.Collapse>
+            </Navbar>
         );
     }
 }

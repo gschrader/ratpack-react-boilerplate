@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Panel, ProgressBar, Row, Col} from 'react-bootstrap';
-import List, { Item } from '../components/List';
+import {Card, Col, ProgressBar, Row} from 'react-bootstrap';
+import List, {Item} from '../components/List';
 import Countdown from 'countdown';
 import bytes from 'bytes';
 
@@ -19,16 +19,20 @@ class Monitor extends Component {
                 <div className="container">
                     <h1>Monitor</h1>
 
-                    <Panel header="Overview">
-                        <List>
-                            <Item label="Uptime" value={Countdown(0, this.props.last.uptime).toString()}/>
-                            <Item label="GC Time" value={gcTimeStr}/>
-                            <Item label="CPU"> <ProgressBar active now={cpupct} label={`${cpupct}%`}/></Item>
-                        </List>
+                    <Card>
+                        <Card.Header>Overview</Card.Header>
+                        <Card.Body>
+                            <List>
+                                <Item label="Uptime" value={Countdown(0, this.props.last.uptime).toString()}/>
+                                <Item label="GC Time" value={gcTimeStr}/>
+                                <Item label="CPU"> <ProgressBar active now={cpupct} label={`${cpupct}%`}/></Item>
+                            </List>
+                        </Card.Body>
+                    </Card>
 
-                    </Panel>
-
-                    <Panel header="Heap">
+                    <Card>
+                        <Card.Header>Heap</Card.Header>
+                        <Card.Body>
                         <Row>
                             <Col md={6}>
                                 <List>
@@ -47,7 +51,8 @@ class Monitor extends Component {
                                 </ProgressBar>
                             </Col>
                         </Row>
-                    </Panel>
+                        </Card.Body>
+                    </Card>
 
                 </div>)
         } else {

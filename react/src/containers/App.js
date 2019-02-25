@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Menu from '../components/Menu';
-import PropTypes from 'prop-types';
 
-import {logout, autoLogin} from '../actions/auth';
+import {autoLogin, logout} from '../actions/auth';
 import {connectJvmWS} from '../actions/jvm';
 import {Modal} from 'react-bootstrap';
 
@@ -14,9 +13,8 @@ class App extends Component {
     }
 
     handleLogout() {
-        const { user } = this.props;
+        const {user} = this.props;
         this.props.dispatch(logout(user));
-        this.context.router.push('/login');
     }
 
     render() {
@@ -24,13 +22,10 @@ class App extends Component {
         return (
             <div className="container-fluid">
 
-                <Menu location={this.props.location} name={name} handleLogout={()=>this.handleLogout()}/>
+                <Menu location={this.props.location} name={name} handleLogout={() => this.handleLogout()}/>
 
-                <div className="appContent">
-                    {this.props.children}
-                </div>
-
-                <Modal show={this.props.disconnected} onHide={function (){}}>
+                <Modal show={this.props.disconnected} onHide={function () {
+                }}>
                     <Modal.Header>
                         <Modal.Title>Disconnected from server</Modal.Title>
                     </Modal.Header>
@@ -42,18 +37,6 @@ class App extends Component {
         );
     }
 }
-
-App.propTypes = {
-    user: PropTypes.string,
-    children: PropTypes.node.isRequired,
-    location: PropTypes.object.isRequired,
-    dispatch: PropTypes.func.isRequired
-};
-
-App.contextTypes = {
-    router: PropTypes.object.isRequired,
-    store: PropTypes.object.isRequired
-};
 
 function mapStateToProps(state) {
     const {auth} = state;
