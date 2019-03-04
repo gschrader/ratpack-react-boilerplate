@@ -26,3 +26,5 @@ dependencies {
 task stage {
   dependsOn installDist
 }
+
+build.dependsOn(":react:build")

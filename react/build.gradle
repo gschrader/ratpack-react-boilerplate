@@ -20,7 +20,7 @@ task cleanNode() {
 }
 
 
-processResources.dependsOn = ['npm_build']
+processResources.dependsOn = ['npm_run_build']
 npm_run_build.dependsOn = ['npm_install']
 npm_start.dependsOn = ['npm_install']
 clean.dependsOn("cleanNode")
