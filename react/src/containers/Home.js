@@ -1,41 +1,31 @@
-import React, {Component} from 'react';
-import {Jumbotron, Card} from 'react-bootstrap';
+import React from 'react';
+import {Card, Jumbotron} from 'react-bootstrap';
 import ReactMarkdown from 'react-markdown';
+import {useFetchText} from "../hooks";
 
-export default class Home extends Component {
-    state = {
-        readme: ""
-    };
+function Home() {
+    const [data, loading] = useFetchText("readme");
 
-    loadReadme() {
-       fetch("readme")
-             .then(response => response.text())
-             .then(text =>
-                 this.setState({
-                 readme: text
-             }));
-       }
+    return (
+        <div className="container">
+            <Jumbotron>
+                <h1>Ratpack React Boilerplate</h1>
 
-     componentDidMount() {
-       this.loadReadme();
-     }
+                <p>
+                    The minimal dev environment to enable live-editing React components from a Ratpack server
+                </p>
 
-     render() {
-        return (
-            <div className="container">
-                <Jumbotron>
-                    <h1>Ratpack React Boilerplate</h1>
+            </Jumbotron>
 
-                    <p>
-                        The minimal dev environment to enable live-editing React components from a Ratpack
-                        server </p>
-
-                </Jumbotron>
-
-                <Card>
-                    <ReactMarkdown source={this.state.readme} />
-                </Card>
-            </div>
-        );
-    }
+            <Card>
+                {loading ? (
+                    "Loading..."
+                ) : (
+                    <ReactMarkdown source={data}/>
+                )}
+            </Card>
+        </div>
+    );
 }
+
+export default Home;
