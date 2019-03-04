@@ -19,9 +19,11 @@ export default class Header extends Component {
                         <LinkContainer to="/">
                             <Nav.Link>Home</Nav.Link>
                         </LinkContainer>
+                        {name ?
                         <LinkContainer to="/monitor">
                             <Nav.Link>Monitor</Nav.Link>
                         </LinkContainer>
+                            : React.Fragment}
 
                         {name ?
                         <NavDropdown title={name} id="basic-nav-dropdown">

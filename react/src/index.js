@@ -25,7 +25,7 @@ const PrivateRoute = ({component: Component, ...rest}) => (
                 state: {from: props.location}
             }}/>
     )}/>
-)
+);
 
 ReactDOM.render(
     <Provider store={store}>

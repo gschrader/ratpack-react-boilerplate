@@ -19,7 +19,8 @@ task cleanNode() {
     delete 'node_modules'
 }
 
-processResources.dependsOn = ['yarn_build']
-yarn_build.dependsOn = ['yarn_install']
-yarn_start.dependsOn = ['yarn_install']
+
+processResources.dependsOn = ['npm_build']
+npm_run_build.dependsOn = ['npm_install']
+npm_start.dependsOn = ['npm_install']
 clean.dependsOn("cleanNode")

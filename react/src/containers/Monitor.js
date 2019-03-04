@@ -46,8 +46,8 @@ class Monitor extends Component {
                         <Row>
                             <Col md={12}>
                                 <ProgressBar>
-                                    <ProgressBar bsStyle="danger" now={usedpct} key={1} label={`${usedpct}%`}/>
-                                    <ProgressBar bsStyle="success" now={freepct} key={2} label={`${freepct}%`}/>
+                                    <ProgressBar variant="danger" now={usedpct} key={1} label={`${usedpct}%`}/>
+                                    <ProgressBar variant="success" now={freepct} key={2} label={`${freepct}%`}/>
                                 </ProgressBar>
                             </Col>
                         </Row>

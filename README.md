@@ -13,9 +13,9 @@ It handles authentication via the Ratpack Pac4j module using JSON Web Tokens (JW
 
 ### Usage
 
-* `./gradlew yarn_install` or `yarn install` from the `react` directory
-* `./gradlew yarn_build` or `yarn build` from the `react` directory
-* `./gradlew yarn_start` or `yarn start` from the `react` directory
+* `./gradlew npm_install` or `npm install` from the `react` directory
+* `./gradlew npm_build` or `npm build` from the `react` directory
+* `./gradlew npm_start` or `npm start` from the `react` directory
 * `./gradlew run`
 * the browser will open using port 3000
 
