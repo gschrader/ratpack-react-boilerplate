@@ -10,7 +10,6 @@ import App from './containers/App';
 import Login from './containers/Login';
 import Home from './containers/Home';
 import Monitor from './containers/Monitor';
-import NotFound from './containers/NotFound';
 
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -25,6 +24,12 @@ const PrivateRoute = ({component: Component, ...rest}) => (
                 state: {from: props.location}
             }}/>
     )}/>
+);
+
+const NotFound = () => (
+    <div>
+        <p>Page not Found.</p>
+    </div>
 );
 
 ReactDOM.render(

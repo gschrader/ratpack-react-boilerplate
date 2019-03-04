@@ -1,9 +1,19 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Card, Col, ProgressBar, Row} from 'react-bootstrap';
-import List, {Item} from '../components/List';
 import Countdown from 'countdown';
 import bytes from 'bytes';
+
+const Item = props => (
+    <Row>
+        <Col md={4}>
+            <strong>{props.label}</strong>
+        </Col>
+        <Col md={8}>
+            {props.value}
+        </Col>
+    </Row>
+);
 
 class Monitor extends Component {
 
@@ -22,35 +32,31 @@ class Monitor extends Component {
                     <Card>
                         <Card.Header>Overview</Card.Header>
                         <Card.Body>
-                            <List>
-                                <Item label="Uptime" value={Countdown(0, this.props.last.uptime).toString()}/>
-                                <Item label="GC Time" value={gcTimeStr}/>
-                                <Item label="CPU"> <ProgressBar active now={cpupct} label={`${cpupct}%`}/></Item>
-                            </List>
+                            <Item label="Uptime" value={Countdown(0, this.props.last.uptime).toString()}/>
+                            <Item label="GC Time" value={gcTimeStr}/>
+                            <Item label="CPU"> <ProgressBar active now={cpupct} label={`${cpupct}%`}/></Item>
                         </Card.Body>
                     </Card>
 
                     <Card>
                         <Card.Header>Heap</Card.Header>
                         <Card.Body>
-                        <Row>
-                            <Col md={6}>
-                                <List>
+                            <Row>
+                                <Col md={6}>
                                     <Item label="Used" value={bytes(this.props.last.used)}/>
                                     <Item label="Free" value={bytes(this.props.last.free)}/>
                                     <Item label="Total" value={bytes(this.props.last.total)}/>
                                     <Item label="Max" value={bytes(this.props.last.max)}/>
-                                </List>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col md={12}>
-                                <ProgressBar>
-                                    <ProgressBar variant="danger" now={usedpct} key={1} label={`${usedpct}%`}/>
-                                    <ProgressBar variant="success" now={freepct} key={2} label={`${freepct}%`}/>
-                                </ProgressBar>
-                            </Col>
-                        </Row>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col md={12}>
+                                    <ProgressBar>
+                                        <ProgressBar variant="danger" now={usedpct} key={1} label={`${usedpct}%`}/>
+                                        <ProgressBar variant="success" now={freepct} key={2} label={`${freepct}%`}/>
+                                    </ProgressBar>
+                                </Col>
+                            </Row>
                         </Card.Body>
                     </Card>
 
