@@ -1,7 +1,7 @@
 ratpack-react-boilerplate
 =====================
 
-[![Build Status](https://travis-ci.org/gschrader/ratpack-react-boilerplate.svg?branch=master)](https://travis-ci.org/gschrader/ratpack-react-boilerplate)
+[![Build Status](https://dev.azure.com/gschrader/gschrader/_apis/build/status/gschrader.ratpack-react-boilerplate?branchName=master)](https://dev.azure.com/gschrader/gschrader/_build/latest?definitionId=1&branchName=master)
 [![dependencies Status](https://david-dm.org/gschrader/ratpack-react-boilerplate/status.svg)](https://david-dm.org/gschrader/ratpack-react-boilerplate)
 [![License](https://img.shields.io/github/license/gschrader/ratpack-react-boilerplate.svg)](https://raw.githubusercontent.com/gschrader/ratpack-react-boilerplate/master/LICENSE)
 
