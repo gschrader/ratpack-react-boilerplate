@@ -31,7 +31,6 @@ The Ratpack server (port 5050) will serve up the production optimized built java
 
 ### Node Libraries
  * [React](https://github.com/facebook/react)
- * [Redux](https://github.com/reactjs/redux)
  * [React Bootstrap](Https://github.com/react-bootstrap/react-bootstrap)
  * [React Router](https://github.com/reactjs/react-router)
  * [Others](https://david-dm.org/gschrader/ratpack-react-boilerplate?path=react)
@@ -56,7 +55,7 @@ The Ratpack server (port 5050) will serve up the production optimized built java
 │   ├── build.gradle                  # gradle file which builds the js/css
 │   ├── index.html                    # index file template
 │   ├── package.json                  # add additional node libraries as needed
-│   └── src                           # react/redux javascript code
+│   └── src                           # react javascript code
 └── settings.gradle                   # for multi-project build
 
 ```

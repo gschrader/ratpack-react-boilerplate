@@ -1,4 +1,5 @@
 import {useState, useEffect} from "react";
+import {urlToWS} from "./utils";
 
 function useFetch(url) {
     const [data, setData] = useState([]);
@@ -38,3 +39,57 @@ function useFetchText(url) {
 }
 
 export {useFetchText};
+
+
+function useWs(url, jwt) {
+    const [data, setData] = useState([]);
+    const [disconnected, setDisconnected] = useState(false);
+
+    async function fetcWs() {
+        const ws = new WebSocket(urlToWS(url) + '?jwt=' + jwt);
+
+        ws.onmessage = function (message) {
+            setData(JSON.parse(message.data));
+        };
+
+        ws.onclose = function () {
+            setDisconnected(true);
+        };
+
+        return ws;
+    }
+
+    useEffect(() => {
+        const ws = fetcWs();
+        return function cleanup() {
+            ws.then(ws => ws.close());
+        }
+    }, []);
+    return [data, disconnected];
+}
+
+export {useWs}
+
+function useWsNoData(url) {
+    const [disconnected, setDisconnected] = useState(false);
+
+    async function fetcWs() {
+        const ws = new WebSocket(urlToWS(url));
+
+        ws.onclose = function () {
+            setDisconnected(true);
+        };
+
+        return ws;
+    }
+
+    useEffect(() => {
+        const ws = fetcWs();
+        return function cleanup() {
+            ws.then(ws => ws.close());
+        }
+    }, []);
+    return disconnected;
+}
+
+export {useWsNoData};

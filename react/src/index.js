@@ -1,30 +1,41 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Provider} from 'react-redux';
 import {Route, Switch} from 'react-router';
-import {BrowserRouter, Redirect} from 'react-router-dom';
+import {BrowserRouter} from 'react-router-dom';
 
-import configureStore from './store/configureStore';
-
-import App from './containers/App';
-import Login from './containers/Login';
-import Home from './containers/Home';
-import Monitor from './containers/Monitor';
+import Login from './Login';
+import Home from './Home';
+import Monitor from './Monitor';
 
 import 'bootstrap/dist/css/bootstrap.css';
+import {AuthProvider} from './AuthContext'
+import ProtectedRoute from "./ProtectedRoute";
 
-const store = configureStore();
+import Menu from './Menu';
+import {Modal} from 'react-bootstrap';
+import {useWsNoData} from "./hooks";
 
-const PrivateRoute = ({component: Component, ...rest}) => (
-    <Route {...rest} render={(props) => (
-        props.user !== null
-            ? <Component {...props} />
-            : <Redirect to={{
-                pathname: '/login',
-                state: {from: props.location}
-            }}/>
-    )}/>
-);
+
+function App() {
+    const disconnected = useWsNoData('/api/status');
+
+    return (
+        <div className="container-fluid">
+
+            <Menu/>
+
+            <Modal show={disconnected} onHide={function () {
+            }}>
+                <Modal.Header>
+                    <Modal.Title>Disconnected from server</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    Please refresh your page.
+                </Modal.Body>
+            </Modal>
+        </div>
+    );
+}
 
 const NotFound = () => (
     <div>
@@ -33,19 +44,20 @@ const NotFound = () => (
 );
 
 ReactDOM.render(
-    <Provider store={store}>
-        <BrowserRouter>
+    <BrowserRouter>
+        <AuthProvider>
             <div>
                 <Route path="/" component={App}/>
                 <Switch>
                     <Route exact path='/' component={Home}/>
                     <Route path="/login" component={Login}/>
-                    <PrivateRoute path='/monitor' component={Monitor} user={store.user}/>
+                    <ProtectedRoute path="/monitor" component={Monitor}/>
 
                     <Route component={NotFound}/>
                 </Switch>
             </div>
-        </BrowserRouter>
-    </Provider>,
+        </AuthProvider>
+    </BrowserRouter>
+    ,
     document.getElementById('root')
 );

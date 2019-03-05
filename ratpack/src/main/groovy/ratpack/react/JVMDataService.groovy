@@ -16,7 +16,7 @@ class JVMDataService {
                     max   : Runtime.runtime.maxMemory(),
                     used  : Runtime.runtime.totalMemory() - Runtime.runtime.freeMemory(),
                     total : Runtime.runtime.totalMemory(),
-                    cpu   : ManagementFactory.operatingSystemMXBean.systemCpuLoad,
+                    cpu   : Double.isNaN(ManagementFactory.operatingSystemMXBean.getSystemLoadAverage()) ? 0.0 : ManagementFactory.operatingSystemMXBean.getSystemLoadAverage() / ManagementFactory.operatingSystemMXBean.getAvailableProcessors(),
                     gc    : ManagementFactory.garbageCollectorMXBeans.get(0).collectionTime
             ]
             points.add(last)

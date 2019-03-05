@@ -78,6 +78,12 @@ ratpack {
                 )
             }
 
+            path("status") { context ->
+                websocketBroadcast(context, periodically(registry, Duration.ofMinutes(1), {
+                    return new ObjectMapper().writeValueAsString(true)
+                }))
+            }
+
             all RatpackPac4j.requireAuth(ParameterClient)
 
             prefix("jvm") {
@@ -107,7 +113,10 @@ ratpack {
 
 
         get('readme') {
-            render "https://raw.githubusercontent.com/gschrader/ratpack-react-boilerplate/master/README.md".toURL().text
+            def readme = "https://raw.githubusercontent.com/gschrader/ratpack-react-boilerplate/master/README.md".toURL().text
+            // hack to get rid of demo.gif, it's not needed for live demo and there isn't code to go look for it
+            readme = readme.replaceAll(/!\[Demo]\(\.\/demo\.gif\)/, "")
+            render readme
         }
 
         all {

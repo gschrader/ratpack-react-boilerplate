@@ -1,7 +1,7 @@
 import React from 'react';
 import {Card, Jumbotron} from 'react-bootstrap';
 import ReactMarkdown from 'react-markdown';
-import {useFetchText} from "../hooks";
+import {useFetchText} from "./hooks";
 
 function Home() {
     const [data, loading] = useFetchText("readme");
